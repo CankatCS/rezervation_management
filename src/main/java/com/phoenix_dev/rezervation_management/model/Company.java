@@ -2,6 +2,7 @@ package com.phoenix_dev.rezervation_management.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
 import java.util.Objects;
 
 /**
@@ -30,6 +31,12 @@ public class Company {
 
     @Column
     private String companyWebSite;
+
+    @Column
+    private LocalTime workStartTime;
+
+    @Column
+    private LocalTime workEndTime;
 
     public Company() {
     }
@@ -84,6 +91,22 @@ public class Company {
 
     public void setCompanyWebSite(String companyWebSite) {
         this.companyWebSite = companyWebSite;
+    }
+
+    public LocalTime getWorkStartTime() {
+        return workStartTime;
+    }
+
+    public void setWorkStartTime(LocalTime workStartTime) {
+        this.workStartTime = workStartTime;
+    }
+
+    public LocalTime getWorkEndTime() {
+        return workEndTime;
+    }
+
+    public void setWorkEndTime(LocalTime workEndTime) {
+        this.workEndTime = workEndTime;
     }
 
     @Override

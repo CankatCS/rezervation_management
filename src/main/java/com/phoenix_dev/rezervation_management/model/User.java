@@ -32,6 +32,9 @@ public class User {
     @Column(name = "role")
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company; // if user is an employee of a company
 
     public User() {
     }
@@ -80,6 +83,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override

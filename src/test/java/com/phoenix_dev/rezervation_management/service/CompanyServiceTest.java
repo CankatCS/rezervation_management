@@ -76,8 +76,10 @@ class CompanyServiceTest {
 
     @Test
     void deleteCompanyDeletesCompany() {
+        when(companyRepository.existsById(1L)).thenReturn(true);
         doNothing().when(companyRepository).deleteById(1L);
         companyService.deleteCompany(1L);
         verify(companyRepository, times(1)).deleteById(1L);
     }
+
 }

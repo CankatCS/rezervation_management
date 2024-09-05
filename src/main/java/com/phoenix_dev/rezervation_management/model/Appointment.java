@@ -1,6 +1,7 @@
 package com.phoenix_dev.rezervation_management.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -29,6 +30,9 @@ public class Appointment {
     @Column
     private Integer durationMinutes;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private User employee;
 
     public Long getId() {
         return id;
@@ -76,6 +80,14 @@ public class Appointment {
 
     public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
+    }
+
+    public User getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(User employee) {
+        this.employee = employee;
     }
 
     @Override
