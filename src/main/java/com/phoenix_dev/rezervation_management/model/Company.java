@@ -23,26 +23,22 @@ public class Company {
     @Column(nullable = false)
     private String companyAddress;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String companyPhone;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String companyEmail;
 
     @Column
     private String companyWebSite;
 
-    @Column
+    @Column(nullable = false)
     private LocalTime workStartTime;
 
-    @Column
+    @Column(nullable = false)
     private LocalTime workEndTime;
 
     public Company() {
-    }
-
-    public Company(String companyName) {
-        this.companyName = companyName;
     }
 
     public Long getId() {
