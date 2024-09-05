@@ -1,7 +1,7 @@
 package com.phoenix_dev.rezervation_management.config;
 
 /**
- * @author Cankat Sezer
+ * Author: Cankat Sezer
  */
 import com.phoenix_dev.rezervation_management.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Public endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") // Role-based access control

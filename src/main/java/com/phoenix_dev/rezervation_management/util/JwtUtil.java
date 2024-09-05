@@ -6,6 +6,7 @@ package com.phoenix_dev.rezervation_management.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -16,8 +17,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "c2VjdXJlV2luZG93bUxlZnRBZGRpdGlvbmFsU2VjcmV0S2V5MTIzIQ==";
-
+    @Value("${jwt.secretKey}")
+    private String secretKey;
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -33,7 +34,7 @@ public class JwtUtil {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(SECRET_KEY)
+                .setSigningKey(secretKey)
                 .parseClaimsJws(token)
                 .getBody();
     }
@@ -52,8 +53,8 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // Token validity is 10 hours
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // Token validity is 1 hours
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
 
